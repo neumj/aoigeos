@@ -1,2 +1,2 @@
 # aoigeos
-geospatial code for generation various area of interest grids
+geospatial code for generating various area of interest grids
