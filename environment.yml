@@ -1,0 +1,8 @@
+name: aoigeos
+dependencies:
+  - python>=3.4 
+  - bokeh
+  - numpy
+  - pandas
+  - jupyter
+  - scikit-learn
