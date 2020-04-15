@@ -1,3 +1,4 @@
+import math
 from aoigeos import polygon
 
 class HexGrid():
@@ -26,7 +27,7 @@ class HexGrid():
 
     def hex_grid_from_centroids(self):
         hex_grid = []
-        p = GeoPolygon()
+        p = polygon.GeoPolygon()
         for c in self.hex_centroids:
             p.from_centroid(6, c[1], c[0], c[2])
             hex_grid.append(p)
