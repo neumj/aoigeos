@@ -32,3 +32,10 @@ def great_circle_distance(lat_start, lon_start, lat_end, lon_end):
                          math.cos(a1)*math.sin(b1)*math.cos(a2)*math.sin(b2) + \
                          math.sin(a1)*math.sin(a2))
     return distance
+
+def wkt_to_geojson_coords(wkt):
+    raw_coords_str = wkt.split('((')[1].split('))')[0].strip()
+    clean_coords = [[float(a.strip().replace(' ',',').split(',')[0]), \
+                 float(a.strip().replace(' ',',').split(',')[1])] \
+                for a in raw_coords_str.split(',')]
+    return clean_coords

@@ -1,8 +1,14 @@
 name: aoigeos
+channels:
+  - anaconda
+  - conda-forge
 dependencies:
-  - python>=3.4 
+  - python=3.7
+  - jupyterlab
   - bokeh
   - numpy
   - pandas
-  - jupyter
   - scikit-learn
+  - qgis
+  - geocoder
+  - beautifulsoup4
