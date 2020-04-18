@@ -38,4 +38,4 @@ def wkt_to_geojson_coords(wkt):
     clean_coords = [[float(a.strip().replace(' ',',').split(',')[0]), \
                  float(a.strip().replace(' ',',').split(',')[1])] \
                 for a in raw_coords_str.split(',')]
-    return clean_coords
+    return [clean_coords]

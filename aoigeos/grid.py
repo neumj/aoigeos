@@ -1,5 +1,7 @@
 import math
 from aoigeos import polygon
+from aoigeos import converters
+from aoigeos import io
 
 class HexGrid():
     def __init__(self, srid=4326):
@@ -27,8 +29,8 @@ class HexGrid():
 
     def hex_grid_from_centroids(self):
         hex_grid = []
-        p = polygon.GeoPolygon()
         for c in self.hex_centroids:
+            p = polygon.GeoPolygon()
             p.from_centroid(6, c[1], c[0], c[2])
             hex_grid.append(p)
         self.hex_grid = hex_grid
@@ -46,3 +48,13 @@ class HexGrid():
             h.to_ewkt()
             ewkt_grid.append(h.ewkt)
         self.hex_grid_ewkt = ewkt_grid
+
+    def geojson_from_wkt_grid(self,out_file):
+        geojson = {'type': 'FeatureCollection','features':[]}
+        for i in range(0,len(self.hex_grid_wkt)):
+            coords = converters.wkt_to_geojson_coords(self.hex_grid_wkt[i])
+            row = {'type':'Feature','properties':{'name':'hex' + str(i)},'geometry':{'type':'Polygon'}}
+            row['geometry'].update({'coordinates':coords})
+            geojson['features'].append(row)
+        self.geojson = geojson
+        io.write_json(self.geojson,out_file)
