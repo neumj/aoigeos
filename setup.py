@@ -4,14 +4,16 @@ reqs = [
     "bokeh",
     "numpy",
     "pandas",
-    "scikit-learn"
+    "scikit-learn",
+    "yaml"
 ]
 
 conda_reqs = [
     "bokeh",
     "numpy",
     "pandas",
-    "scikit-learn"
+    "scikit-learn",
+    "yaml"
 ]
 
 test_pkgs = []

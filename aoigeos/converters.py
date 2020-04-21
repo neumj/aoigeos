@@ -39,3 +39,27 @@ def wkt_to_geojson_coords(wkt):
                  float(a.strip().replace(' ',',').split(',')[1])] \
                 for a in raw_coords_str.split(',')]
     return [clean_coords]
+
+def feature_from_bbox(bbox_list,bbox_name='bounding_box'):
+    '''
+        bbox_list: [x_cord1, ycord_1, x_cord2, ycord_2]
+    '''
+    geom = {'type':'Feature',
+            'properties':{'name':bbox_name},
+            'geometry':{
+                'type': 'Polygon',
+                'coordinates': [[
+                    [bbox_list[0], bbox_list[1]],
+                    [bbox_list[0], bbox_list[3]],
+                    [bbox_list[2], bbox_list[3]],
+                    [bbox_list[2], bbox_list[1]],
+                    [bbox_list[0], bbox_list[1]]
+                ]]}
+           }
+    return geom
+
+def geojson_from_features(feature_list):
+    geojson = {'type': 'FeatureCollection','features': []}
+    for f in feature_list:
+        geojson['features'].append(f)
+    return geojson
